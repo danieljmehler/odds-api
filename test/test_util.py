@@ -1,4 +1,6 @@
 import json
+import os
+import shutil
 import src.odds.nfl.util as util
 
 
@@ -183,15 +185,21 @@ def test_create_odds_info():
     assert odds_info["week"] == 8
     assert odds_info["away_team"] == "Arizona Cardinals"
     assert odds_info["away_team_h2h_price"] == 154
+    assert not odds_info["away_team_h2h_bet"]
     assert odds_info["home_team"] == "Minnesota Vikings"
     assert odds_info["home_team_h2h_price"] == -184
+    assert not odds_info["home_team_h2h_bet"]
     assert odds_info["away_team_spread"] == 3.5
     assert odds_info["away_team_spread_price"] == -110
+    assert not odds_info["away_team_spread_bet"]
     assert odds_info["home_team_spread"] == -3.5
     assert odds_info["home_team_spread_price"] == -110
+    assert not odds_info["home_team_spread_bet"]
     assert odds_info["over_under"] == 48.5
     assert odds_info["over_price"] == -115
+    assert not odds_info["over_bet"]
     assert odds_info["under_price"] == -105
+    assert not odds_info["under_bet"]
 
 
 def test_aggregate_data():
@@ -201,3 +209,21 @@ def test_aggregate_data():
         score_data = json.load(f)
     games, odds = util.aggregate_data(8, odds_data, score_data)
     assert len(games) == 14
+
+
+def test_write_csvs():
+    with open('test/resources/odds.json', 'r') as f:
+        odds_data = json.load(f)
+    with open('test/resources/scores.json', 'r') as f:
+        score_data = json.load(f)
+    games, odds = util.aggregate_data(8, odds_data, score_data)
+    assert len(games) == 14
+    assert len(odds) == 14
+    path = os.path.join('test', 'output')
+    try:
+        shutil.rmtree(path)
+    except Exception as e:
+        raise e
+    finally:
+        os.mkdir(path)
+    util.write_csvs(games, odds, 'test/output/test_game_info.csv', 'test/output/test_odds_info.csv')

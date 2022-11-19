@@ -1,0 +1,15 @@
+week,away_team,away_team_h2h_price,away_team_h2h_bet,home_team,home_team_h2h_price,home_team_h2h_bet,away_team_spread,away_team_spread_price,away_team_spread_bet,home_team_spread,home_team_spread_price,home_team_spread_bet,over_under,over_price,over_bet,under_price,under_bet
+8,Denver Broncos,116,False,Jacksonville Jaguars,-136,False,2.5,-115,False,-2.5,-105,False,40.5,-110,False,-110,False
+8,Arizona Cardinals,154,False,Minnesota Vikings,-184,False,3.5,-110,False,-3.5,-110,False,48.5,-115,False,-105,False
+8,Carolina Panthers,176,False,Atlanta Falcons,-210,False,4.0,-110,False,-4.0,-110,False,41.5,-106,False,-114,False
+8,Chicago Bears,360,False,Dallas Cowboys,-460,False,9.5,-105,False,-9.5,-115,False,42.5,-110,False,-110,False
+8,Miami Dolphins,-190,False,Detroit Lions,160,False,-4.0,-110,False,4.0,-110,False,51.5,-105,False,-115,False
+8,Las Vegas Raiders,-116,False,New Orleans Saints,-102,False,-1.5,-105,False,1.5,-115,False,49.5,-110,False,-110,False
+8,New England Patriots,-146,False,New York Jets,124,False,-2.5,-115,False,2.5,-105,False,39.5,-115,False,-105,False
+8,Pittsburgh Steelers,400,False,Philadelphia Eagles,-520,False,10.5,-106,False,-10.5,-114,False,42.5,-108,False,-112,False
+8,Tennessee Titans,-146,False,Houston Texans,124,False,-2.5,-115,False,2.5,-105,False,40.5,-110,False,-110,False
+8,Washington Commanders,126,False,Indianapolis Colts,-148,False,3.0,-115,False,-3.0,-105,False,39.5,-110,False,-110,False
+8,San Francisco 49ers,-116,False,Los Angeles Rams,-102,False,-1.0,-110,False,1.0,-110,False,41.5,-115,False,-105,False
+8,New York Giants,134,False,Seattle Seahawks,-158,False,3.0,-108,False,-3.0,-112,False,44.5,-105,False,-115,False
+8,Green Bay Packers,370,False,Buffalo Bills,-480,False,10.5,-110,False,-10.5,-110,False,46.5,-115,False,-105,False
+8,Cincinnati Bengals,-180,False,Cleveland Browns,152,False,-3.5,-105,False,3.5,-115,False,45.5,-105,False,-115,False

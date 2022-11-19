@@ -41,15 +41,21 @@ def create_odds_info(week, odds_game):
         "week": week,
         "away_team": odds_game["away_team"],
         "away_team_h2h_price": get_outcome(h2h_market, odds_game["away_team"])["price"],
+        "away_team_h2h_bet": False,
         "home_team": odds_game["home_team"],
         "home_team_h2h_price": get_outcome(h2h_market, odds_game["home_team"])["price"],
+        "home_team_h2h_bet": False,
         "away_team_spread": get_outcome(spreads_market, odds_game["away_team"])["point"],
         "away_team_spread_price": get_outcome(spreads_market, odds_game["away_team"])["price"],
+        "away_team_spread_bet": False,
         "home_team_spread": get_outcome(spreads_market, odds_game["home_team"])["point"],
         "home_team_spread_price": get_outcome(spreads_market, odds_game["home_team"])["price"],
+        "home_team_spread_bet": False,
         "over_under": get_outcome(totals_market, "Over")["point"],
         "over_price": get_outcome(totals_market, "Over")["price"],
-        "under_price": get_outcome(totals_market, "Under")["price"]
+        "over_bet": False,
+        "under_price": get_outcome(totals_market, "Under")["price"],
+        "under_bet": False
     }
     return odds_info
 
@@ -62,17 +68,14 @@ def get_outcome(market, name):
     return [outcome for outcome in market["outcomes"] if outcome["name"] == name][0]
 
 
-def write_csv(data, filepath):
-    with open(filepath, 'w', newline='') as csvfile:
-        fieldnames = [
-            "week",
-            "start_date",
-            "end_date",
-            "game_id",
-            "game_date",
-            "game_time",
-            "location",
-            "away_team",
-            "home_team"
-        ]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+def write_csvs(game_data, odds_data, game_filepath, odds_filepath):
+    with open(game_filepath, 'w', newline='') as csvfile:
+        game_fieldnames = game_data[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=game_fieldnames)
+        writer.writeheader()
+        writer.writerows(game_data)
+    with open(odds_filepath, 'w', newline='') as csvfile:
+        odds_fieldnames = odds_data[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=odds_fieldnames)
+        writer.writeheader()
+        writer.writerows(odds_data)
