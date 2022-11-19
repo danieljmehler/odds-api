@@ -1,0 +1,1622 @@
+[
+    {
+        "id": "0c056485fc7897af7947e667069e420b",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T13:30:00Z",
+        "home_team": "Jacksonville Jaguars",
+        "away_team": "Denver Broncos",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Denver Broncos",
+                                "price": 116
+                            },
+                            {
+                                "name": "Jacksonville Jaguars",
+                                "price": -136
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Denver Broncos",
+                                "price": -115,
+                                "point": 2.5
+                            },
+                            {
+                                "name": "Jacksonville Jaguars",
+                                "price": -105,
+                                "point": -2.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 40.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 40.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "fbef1db7e3116a12749166bf3f1e0d64",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "Minnesota Vikings",
+        "away_team": "Arizona Cardinals",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Arizona Cardinals",
+                                "price": 154
+                            },
+                            {
+                                "name": "Minnesota Vikings",
+                                "price": -184
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Arizona Cardinals",
+                                "price": -110,
+                                "point": 3.5
+                            },
+                            {
+                                "name": "Minnesota Vikings",
+                                "price": -110,
+                                "point": -3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -115,
+                                "point": 48.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -105,
+                                "point": 48.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "24343288ee1dd1405d89fe88a0aec57c",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "Atlanta Falcons",
+        "away_team": "Carolina Panthers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Atlanta Falcons",
+                                "price": -210
+                            },
+                            {
+                                "name": "Carolina Panthers",
+                                "price": 176
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Atlanta Falcons",
+                                "price": -110,
+                                "point": -4.0
+                            },
+                            {
+                                "name": "Carolina Panthers",
+                                "price": -110,
+                                "point": 4.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -106,
+                                "point": 41.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -114,
+                                "point": 41.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "127cac8c3221336aa38df5b846f2dbeb",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "Dallas Cowboys",
+        "away_team": "Chicago Bears",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Chicago Bears",
+                                "price": 360
+                            },
+                            {
+                                "name": "Dallas Cowboys",
+                                "price": -460
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Chicago Bears",
+                                "price": -105,
+                                "point": 9.5
+                            },
+                            {
+                                "name": "Dallas Cowboys",
+                                "price": -115,
+                                "point": -9.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 42.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 42.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "cf7283279795f05bff660461617d6825",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "Detroit Lions",
+        "away_team": "Miami Dolphins",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Detroit Lions",
+                                "price": 160
+                            },
+                            {
+                                "name": "Miami Dolphins",
+                                "price": -190
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Detroit Lions",
+                                "price": -110,
+                                "point": 4.0
+                            },
+                            {
+                                "name": "Miami Dolphins",
+                                "price": -110,
+                                "point": -4.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -105,
+                                "point": 51.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -115,
+                                "point": 51.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "767ca7cda3e3ade1887e30671d5fc213",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "New Orleans Saints",
+        "away_team": "Las Vegas Raiders",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Las Vegas Raiders",
+                                "price": -116
+                            },
+                            {
+                                "name": "New Orleans Saints",
+                                "price": -102
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Las Vegas Raiders",
+                                "price": -105,
+                                "point": -1.5
+                            },
+                            {
+                                "name": "New Orleans Saints",
+                                "price": -115,
+                                "point": 1.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 49.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 49.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "93ce7a34b4c443ac8035319a061de0a9",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "New York Jets",
+        "away_team": "New England Patriots",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "New England Patriots",
+                                "price": -146
+                            },
+                            {
+                                "name": "New York Jets",
+                                "price": 124
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "New England Patriots",
+                                "price": -115,
+                                "point": -2.5
+                            },
+                            {
+                                "name": "New York Jets",
+                                "price": -105,
+                                "point": 2.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -115,
+                                "point": 39.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -105,
+                                "point": 39.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "acf99d213b4af0eef3ef32a7a7349934",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T17:00:00Z",
+        "home_team": "Philadelphia Eagles",
+        "away_team": "Pittsburgh Steelers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Philadelphia Eagles",
+                                "price": -520
+                            },
+                            {
+                                "name": "Pittsburgh Steelers",
+                                "price": 400
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Philadelphia Eagles",
+                                "price": -114,
+                                "point": -10.5
+                            },
+                            {
+                                "name": "Pittsburgh Steelers",
+                                "price": -106,
+                                "point": 10.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -108,
+                                "point": 42.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -112,
+                                "point": 42.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "3f31d44a7851a326bf6ad66c25489e8f",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T20:05:00Z",
+        "home_team": "Houston Texans",
+        "away_team": "Tennessee Titans",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Houston Texans",
+                                "price": 124
+                            },
+                            {
+                                "name": "Tennessee Titans",
+                                "price": -146
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Houston Texans",
+                                "price": -105,
+                                "point": 2.5
+                            },
+                            {
+                                "name": "Tennessee Titans",
+                                "price": -115,
+                                "point": -2.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 40.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 40.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "d599bb938080a04236388836560dbbd9",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T20:25:00Z",
+        "home_team": "Indianapolis Colts",
+        "away_team": "Washington Commanders",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Indianapolis Colts",
+                                "price": -148
+                            },
+                            {
+                                "name": "Washington Commanders",
+                                "price": 126
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Indianapolis Colts",
+                                "price": -105,
+                                "point": -3.0
+                            },
+                            {
+                                "name": "Washington Commanders",
+                                "price": -115,
+                                "point": 3.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 39.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 39.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "dd0275b44eb341aacda741f621b6a966",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T20:25:00Z",
+        "home_team": "Los Angeles Rams",
+        "away_team": "San Francisco 49ers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Los Angeles Rams",
+                                "price": -102
+                            },
+                            {
+                                "name": "San Francisco 49ers",
+                                "price": -116
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Los Angeles Rams",
+                                "price": -110,
+                                "point": 1.0
+                            },
+                            {
+                                "name": "San Francisco 49ers",
+                                "price": -110,
+                                "point": -1.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -115,
+                                "point": 41.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -105,
+                                "point": 41.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "41953e2f7061ceb6b6b48c391bfa52ce",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-30T20:25:00Z",
+        "home_team": "Seattle Seahawks",
+        "away_team": "New York Giants",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "New York Giants",
+                                "price": 134
+                            },
+                            {
+                                "name": "Seattle Seahawks",
+                                "price": -158
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "New York Giants",
+                                "price": -108,
+                                "point": 3.0
+                            },
+                            {
+                                "name": "Seattle Seahawks",
+                                "price": -112,
+                                "point": -3.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -105,
+                                "point": 44.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -115,
+                                "point": 44.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5babc5df2e2dbae5ce7baec2e5628330",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-10-31T00:20:00Z",
+        "home_team": "Buffalo Bills",
+        "away_team": "Green Bay Packers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Buffalo Bills",
+                                "price": -480
+                            },
+                            {
+                                "name": "Green Bay Packers",
+                                "price": 370
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Buffalo Bills",
+                                "price": -110,
+                                "point": -10.5
+                            },
+                            {
+                                "name": "Green Bay Packers",
+                                "price": -110,
+                                "point": 10.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -115,
+                                "point": 46.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -105,
+                                "point": 46.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "67e7b19f194b1cc4b653f6bd45b6521a",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-01T00:15:00Z",
+        "home_team": "Cleveland Browns",
+        "away_team": "Cincinnati Bengals",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Cincinnati Bengals",
+                                "price": -180
+                            },
+                            {
+                                "name": "Cleveland Browns",
+                                "price": 152
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Cincinnati Bengals",
+                                "price": -105,
+                                "point": -3.5
+                            },
+                            {
+                                "name": "Cleveland Browns",
+                                "price": -115,
+                                "point": 3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -105,
+                                "point": 45.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -115,
+                                "point": 45.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "075dbff0219a3a1100c513400c4796ef",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-04T00:15:00Z",
+        "home_team": "Houston Texans",
+        "away_team": "Philadelphia Eagles",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Houston Texans",
+                                "price": 330
+                            },
+                            {
+                                "name": "Philadelphia Eagles",
+                                "price": -420
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Houston Texans",
+                                "price": -110,
+                                "point": 9.5
+                            },
+                            {
+                                "name": "Philadelphia Eagles",
+                                "price": -110,
+                                "point": -9.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 43.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 43.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "bba09e52bc88c100a91e824f49be11d5",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Atlanta Falcons",
+        "away_team": "Los Angeles Chargers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Atlanta Falcons",
+                                "price": 136
+                            },
+                            {
+                                "name": "Los Angeles Chargers",
+                                "price": -162
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Atlanta Falcons",
+                                "price": -110,
+                                "point": 3.0
+                            },
+                            {
+                                "name": "Los Angeles Chargers",
+                                "price": -110,
+                                "point": -3.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 46.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 46.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "11d244b82e507e18b6439dec557b727a",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "New York Jets",
+        "away_team": "Buffalo Bills",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Buffalo Bills",
+                                "price": -560
+                            },
+                            {
+                                "name": "New York Jets",
+                                "price": 420
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Buffalo Bills",
+                                "price": -110,
+                                "point": -10.5
+                            },
+                            {
+                                "name": "New York Jets",
+                                "price": -110,
+                                "point": 10.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 47.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 47.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "06914c8e4dd403676aee566d7cc9bb69",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Cincinnati Bengals",
+        "away_team": "Carolina Panthers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Carolina Panthers",
+                                "price": 310
+                            },
+                            {
+                                "name": "Cincinnati Bengals",
+                                "price": -390
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Carolina Panthers",
+                                "price": -110,
+                                "point": 8.5
+                            },
+                            {
+                                "name": "Cincinnati Bengals",
+                                "price": -110,
+                                "point": -8.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 44.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 44.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "9b891783803c8abff0047cf91db2ab3a",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Chicago Bears",
+        "away_team": "Miami Dolphins",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Chicago Bears",
+                                "price": 158
+                            },
+                            {
+                                "name": "Miami Dolphins",
+                                "price": -188
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Chicago Bears",
+                                "price": -110,
+                                "point": 3.5
+                            },
+                            {
+                                "name": "Miami Dolphins",
+                                "price": -110,
+                                "point": -3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 41.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 41.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "1442a46d7b8b1be156fe3d2932975633",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Detroit Lions",
+        "away_team": "Green Bay Packers",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Detroit Lions",
+                                "price": 152
+                            },
+                            {
+                                "name": "Green Bay Packers",
+                                "price": -180
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Detroit Lions",
+                                "price": -114,
+                                "point": 3.5
+                            },
+                            {
+                                "name": "Green Bay Packers",
+                                "price": -106,
+                                "point": -3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 48.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 48.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "68f51e5e002cdb584027daada09f3649",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "New England Patriots",
+        "away_team": "Indianapolis Colts",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Indianapolis Colts",
+                                "price": 198
+                            },
+                            {
+                                "name": "New England Patriots",
+                                "price": -240
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Indianapolis Colts",
+                                "price": -110,
+                                "point": 5.5
+                            },
+                            {
+                                "name": "New England Patriots",
+                                "price": -110,
+                                "point": -5.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 40.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 40.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "7efdf15a254279be00ebd0f6a7da0150",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Jacksonville Jaguars",
+        "away_team": "Las Vegas Raiders",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Jacksonville Jaguars",
+                                "price": 110
+                            },
+                            {
+                                "name": "Las Vegas Raiders",
+                                "price": -130
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Jacksonville Jaguars",
+                                "price": -105,
+                                "point": 1.5
+                            },
+                            {
+                                "name": "Las Vegas Raiders",
+                                "price": -115,
+                                "point": -1.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 46.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 46.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "3f0616838df7ceba78457c56176e0bcb",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T18:00:00Z",
+        "home_team": "Washington Commanders",
+        "away_team": "Minnesota Vikings",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Minnesota Vikings",
+                                "price": -144
+                            },
+                            {
+                                "name": "Washington Commanders",
+                                "price": 122
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Minnesota Vikings",
+                                "price": -105,
+                                "point": -3.0
+                            },
+                            {
+                                "name": "Washington Commanders",
+                                "price": -115,
+                                "point": 3.0
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 44.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 44.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "d1f64ef02a225673944a68df3761f46b",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T21:05:00Z",
+        "home_team": "Arizona Cardinals",
+        "away_team": "Seattle Seahawks",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Arizona Cardinals",
+                                "price": -178
+                            },
+                            {
+                                "name": "Seattle Seahawks",
+                                "price": 150
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Arizona Cardinals",
+                                "price": -110,
+                                "point": -3.5
+                            },
+                            {
+                                "name": "Seattle Seahawks",
+                                "price": -110,
+                                "point": 3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 49.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 49.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "f5bc53c5b850de36eff5cf4fde8d8d25",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-06T21:25:00Z",
+        "home_team": "Tampa Bay Buccaneers",
+        "away_team": "Los Angeles Rams",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Los Angeles Rams",
+                                "price": 104
+                            },
+                            {
+                                "name": "Tampa Bay Buccaneers",
+                                "price": -122
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Los Angeles Rams",
+                                "price": -115,
+                                "point": 2.5
+                            },
+                            {
+                                "name": "Tampa Bay Buccaneers",
+                                "price": -105,
+                                "point": -2.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 43.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 43.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "11b4f477a555bc5f5500530b189f5e5f",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-07T01:20:00Z",
+        "home_team": "Kansas City Chiefs",
+        "away_team": "Tennessee Titans",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Kansas City Chiefs",
+                                "price": -500
+                            },
+                            {
+                                "name": "Tennessee Titans",
+                                "price": 385
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Kansas City Chiefs",
+                                "price": -110,
+                                "point": -10.5
+                            },
+                            {
+                                "name": "Tennessee Titans",
+                                "price": -110,
+                                "point": 10.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 47.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 47.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "834aeb82cb4e4c5c6de2603b98a55206",
+        "sport_key": "americanfootball_nfl",
+        "sport_title": "NFL",
+        "commence_time": "2022-11-08T01:15:00Z",
+        "home_team": "New Orleans Saints",
+        "away_team": "Baltimore Ravens",
+        "bookmakers": [
+            {
+                "key": "fanduel",
+                "title": "FanDuel",
+                "last_update": "2022-10-29T15:05:30Z",
+                "markets": [
+                    {
+                        "key": "h2h",
+                        "outcomes": [
+                            {
+                                "name": "Baltimore Ravens",
+                                "price": -162
+                            },
+                            {
+                                "name": "New Orleans Saints",
+                                "price": 136
+                            }
+                        ]
+                    },
+                    {
+                        "key": "spreads",
+                        "outcomes": [
+                            {
+                                "name": "Baltimore Ravens",
+                                "price": -105,
+                                "point": -3.5
+                            },
+                            {
+                                "name": "New Orleans Saints",
+                                "price": -115,
+                                "point": 3.5
+                            }
+                        ]
+                    },
+                    {
+                        "key": "totals",
+                        "outcomes": [
+                            {
+                                "name": "Over",
+                                "price": -110,
+                                "point": 48.5
+                            },
+                            {
+                                "name": "Under",
+                                "price": -110,
+                                "point": 48.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
