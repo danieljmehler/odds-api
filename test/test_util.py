@@ -227,3 +227,13 @@ def test_write_csvs():
     finally:
         os.mkdir(path)
     util.write_csvs(games, odds, 'test/output/test_game_info.csv', 'test/output/test_odds_info.csv')
+
+
+def test_list_google_drive_files():
+    creds = util.get_google_api_creds()
+    util.list_google_drive_files(creds)
+
+
+def test_upload_csv_to_google_sheets():
+    creds = util.get_google_api_creds()
+    util.upload_csv_to_google_sheets(creds, "odds-api", "test/output/test_game_info.csv")
