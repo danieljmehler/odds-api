@@ -24,8 +24,43 @@ def get_datetime(event_date) -> datetime:
     """
     return datetime.strptime(event_date, EVENT_DATE_FORMAT).replace(tzinfo=timezone.utc)
 
+def get_espn_data(week=None, espn_json_filename=None):
+    """Get scores for the games of an NFL schedule week
 
-def get_week(date=datetime.now(timezone.utc), espn_json_filename=None):
+    Parameters
+    ----------
+    week : int, optional
+        NFL schedule week for which to get scores (default is the next week for which all games have not been played)
+    espn_json_filename : str, optional
+        Filename of a JSON file containing ESPN API data. If provided, data will be taken from this file instead of querying the ESPN API (default: "./scoreboard_weekX.json")
+
+    Returns
+    -------
+    dict
+        ESPN API NFL scoreboard data
+    """
+    # Set default filename
+    if espn_json_filename is None:
+        espn_json_filename = './output/scoreboard_week{}.json'.format(week if week else '')
+
+    # Read data from file if provided
+    if os.path.isfile(espn_json_filename):
+        logging.debug('Getting ESPN data from {}'.format(espn_json_filename))
+        with open(espn_json_filename, 'r') as f:
+            data = json.load(f)
+    else:
+        logging.debug('Querying ESPN for data')
+        response = requests.get('{}{}'.format(NFL_SCOREBOARD_URL, '?week={}'.format(week) if week is not None else ''))
+        data = response.json()
+        # Write to file
+        logging.debug('Writing ESPN data to file '.format(espn_json_filename))
+        with open(espn_json_filename, 'w') as f:
+            json.dump(data, f)
+
+    return data
+
+
+def get_week(date=None, espn_json_filename=None):
     """Get NFL schedule week for the given date
 
     Parameters
@@ -40,6 +75,8 @@ def get_week(date=datetime.now(timezone.utc), espn_json_filename=None):
     int
         The NFL schedule week under which the date falls
     """
+    if not date:
+        date = datetime.now(timezone.utc)
     logging.debug('Getting the NFL schedule week for date {}'.format(date))
     data = get_espn_data(None, espn_json_filename)
 
@@ -53,7 +90,7 @@ def get_week(date=datetime.now(timezone.utc), espn_json_filename=None):
     return [int(entry["value"]) for entry in regular_season_calendar["entries"] if date_filter(entry)][0]
 
 
-def get_week_dates(week=get_week(), espn_json_filename=None):
+def get_week_dates(week=None, espn_json_filename=None):
     """Get start and end date of an NFL schedule week
 
     Parameters
@@ -70,6 +107,8 @@ def get_week_dates(week=get_week(), espn_json_filename=None):
     datetime
         The end date of the NFL schedule week
     """
+    if week is None:
+        week = get_week()
     logging.debug('Getting start and ends dates of NFL schedule week {}'.format(week))
     data = get_espn_data(week, espn_json_filename)
 
@@ -82,39 +121,3 @@ def get_week_dates(week=get_week(), espn_json_filename=None):
     end_date = datetime.strptime(
         week_entry["endDate"], "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc)
     return start_date, end_date
-
-
-def get_espn_data(week=get_week(), espn_json_filename=None):
-    """Get scores for the games of an NFL schedule week
-
-    Parameters
-    ----------
-    week : int, optional
-        NFL schedule week for which to get scores (default is the next week for which all games have not been played)
-    espn_json_filename : str, optional
-        Filename of a JSON file containing ESPN API data. If provided, data will be taken from this file instead of querying the ESPN API (default: "./scoreboard_weekX.json")
-
-    Returns
-    -------
-    dict
-        ESPN API NFL scoreboard data
-    """
-    # Set default filename
-    if not espn_json_filename:
-        espn_json_filename = './scoreboard_week{}.json'.format(week)
-
-    # Read data from file if provided
-    if os.path.isfile(espn_json_filename):
-        logging.debug('Getting ESPN data from {}'.format(espn_json_filename))
-        with open(espn_json_filename, 'r') as f:
-            data = json.load(f)
-    else:
-        logging.debug('Querying ESPN for data')
-        response = requests.get('{}?week={}'.format(NFL_SCOREBOARD_URL, week))
-        data = response.json()
-        # Write to file
-        logging.debug('Writing ESPN data to file '.format(espn_json_filename))
-        with open(espn_json_filename, 'w') as f:
-            json.dump(data, f)
-
-    return data

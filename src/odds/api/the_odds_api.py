@@ -2,7 +2,7 @@
 """Methods for interacting with The Odds API and working with the data."""
 
 from datetime import datetime, timezone
-import espn
+import src.odds.api.espn as espn
 import json
 import logging
 import os
@@ -47,7 +47,7 @@ def get_datetime(commence_time) -> datetime:
     return datetime.strptime(commence_time, COMMENCE_TIME_DATE_FORMAT).replace(tzinfo=timezone.utc)
 
 
-def get_odds_data(week=espn.get_week(), odds_json_filename=None) -> dict:
+def get_odds_data(week=None, odds_json_filename=None, espn_json_filename=None) -> dict:
     """Get The Odds API odds data for the given week. Return the data as a dict, and also write the JSON to a local file.
 
     Parameters
@@ -62,6 +62,8 @@ def get_odds_data(week=espn.get_week(), odds_json_filename=None) -> dict:
     dict
         JSON odds data from The Odds API for the given week
     """
+    if not week:
+        week = espn.get_week(None, espn_json_filename)
 
     # Set default filename
     if not odds_json_filename:
@@ -95,7 +97,7 @@ def get_odds_data(week=espn.get_week(), odds_json_filename=None) -> dict:
     odds_json = response.json()
 
     # Filter odds data by the week we want
-    start_date, end_date = espn.get_dates_for_week(week)
+    start_date, end_date = espn.get_week_dates(week, espn_json_filename)
     logging.debug('Filter odds data for dates {}-{}'.format(start_date, end_date))
 
     def date_filter(game):
