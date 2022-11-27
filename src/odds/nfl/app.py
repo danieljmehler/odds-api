@@ -1,4 +1,5 @@
 import argparse
+import src.odds.api.espn as espn
 import util
 
 parser = argparse.ArgumentParser(
@@ -8,7 +9,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     '-w', '--week',
     help="Week of the NFL season for which to get data. Default is the next upcoming week.",
-    default=util.get_week_for_date(),
+    default=espn.get_week(),
     type=int
 )
 parser.add_argument(

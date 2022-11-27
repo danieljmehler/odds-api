@@ -4,6 +4,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient import discovery
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
+import json
 import logging
 import os
 
@@ -76,7 +77,7 @@ def get_file(creds, filename):
     if len(matching) == 1:
         return matching[0]
     elif len(matching) == 0:
-        logging.warn('No Google Sheets files named {} found.'.format(filename))
+        logging.warning('No Google Sheets files named {} found.'.format(filename))
         return None
     else:
         msg = 'Multiple Google Sheets files found with the name {}. Please manually delete unneccessary files and try again.'.format(filename)
@@ -122,9 +123,9 @@ def upload_csv(creds, sheets_filename, csv_filename):
     """
     files = get_files(creds)
     files_with_same_name = [
-        file for file in file if file["name"] == sheets_filename]
+        file for file in files if file["name"] == sheets_filename]
     if len(files_with_same_name) > 0:
-        logging.warn('Found existing file(s) named {}. Files will be deleted to create new file with that name.'.format(
+        logging.warning('Found existing file(s) named {}. Files will be deleted to create new file with that name.'.format(
             sheets_filename))
         delete_files(creds, files_with_same_name)
 
@@ -141,7 +142,7 @@ def upload_csv(creds, sheets_filename, csv_filename):
         file = service.files().create(
             body=file_metadata,
             media_body=media,
-            fields='id').execute()
+            fields='id, name').execute()
     except HttpError as error:
         logging.error('Error while uploading CSV file {} to Google Sheets file {}'.format(
             csv_filename, sheets_filename))
@@ -170,7 +171,6 @@ def get_file_data(creds, sheets_filename):
     try:
         response = service.spreadsheets().get(
             spreadsheetId=file["id"], includeGridData=True).execute()
-        # data = response["sheets"][0]["data"][0]
     except HttpError as error:
         logging.error('Error while Google Sheets data from file {}'.format(sheets_filename))
 
@@ -182,14 +182,14 @@ def get_file_data(creds, sheets_filename):
         else:
             return userEnteredValue["stringValue"]
 
-    # listOfRows = []
-    # for row in data["rowData"]:
-    #     listOfRows.append([get_formatted_value(
-    #         value["userEnteredValue"]) for value in row["values"]])
+    data = { "sheets": [] }
+    for sheet in response["sheets"]:
+        data_sheet = {
+            "title": sheet["properties"]["title"],
+            "rows": []
+        }
+        for row in sheet["data"][0]["rowData"]:
+            data_sheet["rows"].append([get_formatted_value(value["userEnteredValue"]) for value in row["values"]])
+        data["sheets"].append(data_sheet)
 
-    # ret = [dict(zip(listOfRows[0], row))
-    #        for row in listOfRows if row[0] != "week"]
-    # with open("test/output/sheet-reduced.json", 'w') as f:
-    #     json.dump(ret, f)
-
-    return response
+    return data
