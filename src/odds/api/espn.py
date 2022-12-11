@@ -24,7 +24,7 @@ def get_datetime(event_date) -> datetime:
     """
     return datetime.strptime(event_date, EVENT_DATE_FORMAT).replace(tzinfo=timezone.utc)
 
-def get_espn_data(week=None, espn_json_filename=None):
+def get_espn_data(week=None, espn_json_filename=None, force=False):
     """Get scores for the games of an NFL schedule week
 
     Parameters
@@ -33,6 +33,8 @@ def get_espn_data(week=None, espn_json_filename=None):
         NFL schedule week for which to get scores (default is the next week for which all games have not been played)
     espn_json_filename : str, optional
         Filename of a JSON file containing ESPN API data. If provided, data will be taken from this file instead of querying the ESPN API (default: "./scoreboard_weekX.json")
+    force : boolean, optional
+        If True, always gets data from API, instead of from local cache file.
 
     Returns
     -------
@@ -44,18 +46,22 @@ def get_espn_data(week=None, espn_json_filename=None):
         espn_json_filename = './output/scoreboard_week{}.json'.format(week if week else '')
 
     # Read data from file if provided
-    if os.path.isfile(espn_json_filename):
+    if os.path.isfile(espn_json_filename) and not force:
         logging.debug('Getting ESPN data from {}'.format(espn_json_filename))
         with open(espn_json_filename, 'r') as f:
-            data = json.load(f)
-    else:
-        logging.debug('Querying ESPN for data')
-        response = requests.get('{}{}'.format(NFL_SCOREBOARD_URL, '?week={}'.format(week) if week is not None else ''))
-        data = response.json()
-        # Write to file
-        logging.debug('Writing ESPN data to file '.format(espn_json_filename))
-        with open(espn_json_filename, 'w') as f:
-            json.dump(data, f)
+            return json.load(f)
+
+    logging.debug('Querying ESPN for data')
+    response = requests.get('{}{}'.format(NFL_SCOREBOARD_URL, '?week={}'.format(week) if week is not None else ''))
+    data = response.json()
+
+    # Create directories
+    os.makedirs(os.path.dirname(espn_json_filename), exist_ok=True)
+
+    # Write to file
+    logging.debug('Writing ESPN data to file '.format(espn_json_filename))
+    with open(espn_json_filename, 'w') as f:
+        json.dump(data, f)
 
     return data
 

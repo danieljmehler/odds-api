@@ -55,7 +55,7 @@ def get_odds_data(week=None, odds_json_filename=None, espn_json_filename=None) -
     week : int, optional
         The week for which to get odds data (default is the next week for which all games have not been played)
     odds_json_filename : str, optional
-        Filename to which odds JSON data will be saved. If this file already exists, data will be retrieved from this file instead of from the API (default: "./odds_weekX.json").
+        Filename to which odds JSON data will be saved. If this file already exists, data will be retrieved from this file instead of from the API (default: "./output/odds_weekX.json").
 
     Returns
     -------
@@ -67,7 +67,7 @@ def get_odds_data(week=None, odds_json_filename=None, espn_json_filename=None) -
 
     # Set default filename
     if not odds_json_filename:
-        odds_json_filename = './odds_week{}.json'.format(week)
+        odds_json_filename = './output/odds_week{}.json'.format(week)
 
     # If odds JSON file already exists, return its data
     if os.path.isfile(odds_json_filename):

@@ -4,6 +4,8 @@ import json
 import logging
 import os
 import requests
+import src.odds.api.espn as espn
+import src.odds.api.the_odds_api as odds
 
 
 def aggregate_data(week, odds_data, score_data):
@@ -29,51 +31,51 @@ def aggregate_data(week, odds_data, score_data):
     return games, odds_infos
 
 
-def create_game_info(week, odds_game, score_game):
-    date = datetime.strptime(odds_game["commence_time"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    address = score_game["competitions"][0]["venue"]["address"]
-    game = {
-        "week": week,
-        "date": date.strftime("%Y-%m-%d"),
-        "time": date.strftime("%I:%M %p"),
-        "location": address["city"] if "state" not in address else '{}, {}'.format(address["city"], address["state"]),
-        "away_team": odds_game["away_team"],
-        "home_team": odds_game["home_team"]
-    }
-    return game
+def create_game_info_data(espn_data):
+    data = []
+    for event in espn_data["events"]:
+        address = event["competitions"][0]["venue"]["address"]
+        event_date = espn.get_datetime(event["date"]).astimezone()
+        game = {
+            "week": espn_data["week"]["number"],
+            "date": event_date.strftime("%Y-%m-%d"),
+            "time": event_date.strftime("%I:%M %p"),
+            "location": address["city"] if "state" not in address else '{}, {}'.format(address["city"], address["state"]),
+            "home_team": event["name"][event["name"].index(' at ') + 4:],
+            "away_team": event["name"][:event["name"].index(' at ')]
+        }
+        data.append(game)
+    return data
 
-def get_competitor_score(competitors, team_name):
-    return [int(competitor["score"]) for competitor in competitors if team_name == competitor["team"]["displayName"]][0]
 
-
-def create_odds_info(week, odds_game, score_game):
-    h2h_market = get_market(odds_game, "h2h")
-    spreads_market = get_market(odds_game, "spreads")
-    totals_market = get_market(odds_game, "totals")
-    odds_info = {
-        "week": week,
-        "away_team": odds_game["away_team"],
-        "away_team_score": -1 if "winner" not in score_game["competitions"][0]["competitors"][0] else get_competitor_score(score_game["competitions"][0]["competitors"], odds_game["away_team"]),
-        "away_team_h2h_price": 0 if h2h_market is None else get_outcome(h2h_market, odds_game["away_team"])["price"],
-        "away_team_h2h_bet": 0,
-        "home_team": odds_game["home_team"],
-        "home_team_score": -1 if "winner" not in score_game["competitions"][0]["competitors"][0] else get_competitor_score(score_game["competitions"][0]["competitors"], odds_game["home_team"]),
-        "home_team_h2h_price": 0 if h2h_market is None else  get_outcome(h2h_market, odds_game["home_team"])["price"],
-        "home_team_h2h_bet": 0,
-        "away_team_spread": 0 if spreads_market is None else get_outcome(spreads_market, odds_game["away_team"])["point"],
-        "away_team_spread_price": 0 if spreads_market is None else get_outcome(spreads_market, odds_game["away_team"])["price"],
-        "away_team_spread_bet": 0,
-        "home_team_spread": 0 if spreads_market is None else get_outcome(spreads_market, odds_game["home_team"])["point"],
-        "home_team_spread_price": 0 if spreads_market is None else get_outcome(spreads_market, odds_game["home_team"])["price"],
-        "home_team_spread_bet": 0,
-        "over_under": 0 if totals_market is None else get_outcome(totals_market, "Over")["point"],
-        "over_price": 0 if totals_market is None else get_outcome(totals_market, "Over")["price"],
-        "over_bet": 0,
-        "under_price": 0 if totals_market is None else get_outcome(totals_market, "Under")["price"],
-        "under_bet": 0
-    }
-    return odds_info
-
+def create_odds_info_data(week, odds_data):
+    data = []
+    for event in odds_data:
+        h2h_market = get_market(event, "h2h")
+        spreads_market = get_market(event, "spreads")
+        totals_market = get_market(event, "totals")
+        game = {
+            "week": week,
+            "away_team": event["away_team"],
+            "away_team_h2h_price": 0 if h2h_market is None else get_outcome(h2h_market, event["away_team"])["price"],
+            "away_team_h2h_bet": 0,
+            "home_team": event["home_team"],
+            "home_team_h2h_price": 0 if h2h_market is None else  get_outcome(h2h_market, event["home_team"])["price"],
+            "home_team_h2h_bet": 0,
+            "away_team_spread": 0 if spreads_market is None else get_outcome(spreads_market, event["away_team"])["point"],
+            "away_team_spread_price": 0 if spreads_market is None else get_outcome(spreads_market, event["away_team"])["price"],
+            "away_team_spread_bet": 0,
+            "home_team_spread": 0 if spreads_market is None else get_outcome(spreads_market, event["home_team"])["point"],
+            "home_team_spread_price": 0 if spreads_market is None else get_outcome(spreads_market, event["home_team"])["price"],
+            "home_team_spread_bet": 0,
+            "over_under": 0 if totals_market is None else get_outcome(totals_market, "Over")["point"],
+            "over_price": 0 if totals_market is None else get_outcome(totals_market, "Over")["price"],
+            "over_bet": 0,
+            "under_price": 0 if totals_market is None else get_outcome(totals_market, "Under")["price"],
+            "under_bet": 0
+        }
+        data.append(game)
+    return data
 
 def get_market(odds_game, key):
     if len(odds_game["bookmakers"]) > 0:
@@ -87,17 +89,14 @@ def get_outcome(market, name):
     return None
 
 
-def write_csvs(game_data, odds_data, game_filepath, odds_filepath):
-    with open(game_filepath, 'w', newline='') as csvfile:
-        game_fieldnames = game_data[0].keys()
-        writer = csv.DictWriter(csvfile, fieldnames=game_fieldnames)
+def write_csv(data, filename):
+    if os.path.dirname(filename) != '':
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = data[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(game_data)
-    with open(odds_filepath, 'w', newline='') as csvfile:
-        odds_fieldnames = odds_data[0].keys()
-        writer = csv.DictWriter(csvfile, fieldnames=odds_fieldnames)
-        writer.writeheader()
-        writer.writerows(odds_data)
+        writer.writerows(data)
 
 
 
@@ -113,8 +112,6 @@ def add_scores_to_bet_data(bet_data, score_data):
         game["home_team_score"] = int(home_score)
         updated_bet_data.append(game)
 
-    with open("test/output/sheet-reduced-with-scores.json", 'w') as f:
-        json.dump(updated_bet_data, f)
     return updated_bet_data
 
 

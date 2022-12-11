@@ -66,13 +66,14 @@ def get_files(creds):
 
     # Call the Drive v3 API
     results = service.files().list(
-        pageSize=10,
+        pageSize=20,
         fields="nextPageToken, files(id, name)").execute()
     return results.get('files', [])
 
 
 def get_file(creds, filename):
     files = get_files(creds)
+    logging.debug("Retrieved Google Sheets file: {}".format(files))
     matching = [file for file in files if file["name"] == filename]
     if len(matching) == 1:
         return matching[0]
@@ -166,7 +167,11 @@ def get_file_data(creds, sheets_filename):
     dict
         Google Sheets file data
     """
+    # Add localfilename
+    # If it exists and not force, get data from local file
+    # Else, get from API
     file = get_file(creds, sheets_filename)
+    logging.debug("Retrieved Google Sheets file: {}".format(file))
     service = discovery.build('sheets', 'v4', credentials=creds)
     try:
         response = service.spreadsheets().get(
@@ -192,4 +197,6 @@ def get_file_data(creds, sheets_filename):
             data_sheet["rows"].append([get_formatted_value(value["userEnteredValue"]) for value in row["values"]])
         data["sheets"].append(data_sheet)
 
+    with open('output/{}.json'.format(sheets_filename), 'w') as f:
+        json.dump(data, f)
     return data
