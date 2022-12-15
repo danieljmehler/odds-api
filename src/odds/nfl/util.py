@@ -5,7 +5,7 @@ import logging
 import os
 import requests
 import src.odds.api.espn as espn
-import src.odds.api.the_odds_api as odds
+import TheOddsApi as odds
 
 
 def aggregate_data(week, odds_data, score_data):

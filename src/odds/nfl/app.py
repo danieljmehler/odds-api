@@ -1,16 +1,51 @@
 import argparse
+import csv
 import json
 import logging
 import os
-import src.odds.api.espn as espn
-import src.odds.api.google_sheets as gsheets
-import src.odds.api.the_odds_api as odds
 import sys
-import util
+
+from src.odds.api.EspnApi import EspnApi
+from src.odds.api.GoogleSheetsApi import GoogleSheetsApi
+from src.odds.api.TheOddsApi import TheOddsApi
+from src.odds.nfl.NflWeek import NflWeek
+
+espn_data = None
+odds_data = None
+nflweek = None
+espnapi = EspnApi()
+theoddsapi = TheOddsApi()
+gsheetsapi = GoogleSheetsApi()
+gsheetcred = gsheetsapi.get_google_api_creds()
+
+
+def get_scoreboard_data(week, filename):
+    espn_data = espnapi.get_week_data(week)
+    with open(filename, "w") as f:
+        json.dump(espn_data, f, indent=4)
+    return espn_data
+
+
+def get_odds_data(week, filename):
+    odds_data = theoddsapi.get_odds_data()
+    with open(filename, "w") as f:
+        json.dump(odds_data, f, indent=4)
+    return odds_data
+
+
+def write_csv(data, filename):
+    if os.path.dirname(filename) != '':
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = data[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(data)
+
 
 parser = argparse.ArgumentParser(
     prog="NFL Odds API",
-    description="Get NFL odds and calculate bet results"
+    description="Get NFL odds, make bets, and calculate bet results"
 )
 parser.add_argument(
     '--log-level',
@@ -23,70 +58,85 @@ parser.add_argument(
     type=int
 )
 parser.add_argument(
-    '--game-info-file',
-    help="Get basic info about NFL games for a week, like time, date, and location, and write it to the given file as a CSV"
+    '--download-odds-data',
+    help="Get odds data from The Odds API and save to the given file"
 )
 parser.add_argument(
-    '--odds-info-file',
-    help="Get odds info about NFL games for a week, including head-to-head price, spread, and over/under, and write it to the given file as a CSV"
+    '--download-scoreboard-data',
+    help='Get scoreboard data from ESPN and save to the given file'
 )
 parser.add_argument(
-    '--create-google-sheet',
-    help="Create a Google Sheet for the given local file. If a Google Sheet with the same name already exists, it will be replaced",
-    action='append'
+    '--create-games-file',
+    help="Get game info and odds for the given week, upload to Google Sheets with the given filename"
 )
 parser.add_argument(
-    '--get-google-sheet-data',
-    help="Create a local JSON file from the given Google Sheet. The first row of the Google Sheet is assumed to be a header row."
+    '--get-bets-data',
+    help="Get bet info from the given Google Sheet filename."
 )
 parser.add_argument(
-    '--populate-scores',
-    help="Update a local JSON file with game scores"
-)
-parser.add_argument(
-    '--populate-bet-results',
-    help="Update a local JSON file with bet results"
-)
-parser.add_argument(
-    '--print-results-summary',
-    help="Calculate bet results and print a summary"
+    '--calculate-bet-results',
+    help="Calculate bet results, summarize, and upload to the given Google Sheet filename"
 )
 
 args = parser.parse_args()
-logging.basicConfig( level=args.log_level.upper() )
+logging.basicConfig(level=args.log_level.upper())
 
-print(args)
+week = args.week
 
-creds = gsheets.get_google_api_creds()
+if args.download_scoreboard_data:
+    espn_data = get_scoreboard_data(week, args.download_scoreboard_data)
 
-if not args.week:
-    args.week = espn.get_week()
+if args.download_odds_data:
+    odds_data = get_odds_data(week, args.download_odds_data)
 
-if args.game_info_file:
-    logging.info('Writing game info for week {} to file {}'.format(
-        args.week, args.game_info_file))
-    espn_data = espn.get_espn_data(args.week)
-    game_info_data = util.create_game_info_data(espn_data)
-    util.write_csv(game_info_data, args.game_info_file)
+if args.create_games_file:
+    if espn_data is None:
+        espn_data = get_scoreboard_data(
+            week, "output/week{}_scoreboard.json".format(week))
+    if odds_data is None:
+        odds_data = get_odds_data(week, "output/week{}_odds.json".format(week))
+    nflweek = NflWeek(week, espn_data=espn_data, odds_data=odds_data)
+    csv_data = nflweek.to_csv()
+    write_csv(csv_data, "output/{}.csv".format(args.create_games_file))
+    gsheetsapi.upload_csv(gsheetcred, args.create_games_file,
+                          "output/{}.csv".format(args.create_games_file))
 
-if args.odds_info_file:
-    logging.info('Writing odds info for week {} to file {}'.format(
-        args.week, args.odds_info_file))
-    odds_data = odds.get_odds_data(args.week)
-    odds_info_data = util.create_odds_info_data(args.week, odds_data)
-    util.write_csv(odds_info_data, args.odds_info_file)
+if args.get_bets_data:
+    if nflweek is None:
+        if espn_data is None:
+            espn_data = get_scoreboard_data(
+                week, "output/week{}_scoreboard.json".format(week))
+        if odds_data is None:
+            odds_data = get_odds_data(
+                week, "output/week{}_odds.json".format(week))
+        nflweek = NflWeek(week, espn_data=espn_data, odds_data=odds_data)
+    bet_data = gsheetsapi.get_file_data(gsheetcred, args.get_bets_data, True)[
+        "sheets"][0]["rows"]
+    print("bet_data={}".format(bet_data))
+    nflweek.set_bets(bet_data)
+    print(nflweek)
 
-if args.create_google_sheet:
-    for local_filename in args.create_google_sheet:
-        logging.info('Creating Google Sheet of the local file {}'.format(local_filename))
-        if not os.path.isfile(local_filename):
-            raise FileNotFoundError('File {} does not exist'.format(local_filename))
-        gsheet_filename = os.path.basename(local_filename)
-        uploaded_file = gsheets.upload_csv(creds, gsheet_filename, local_filename)
+if args.calculate_bet_results:
+    if not args.get_bets_data:
+        sys.exit('When specifying "--calculate-bet-results" you must also specify "--get-bets-data"')
+    
 
-if args.populate_scores:
-    bet_data = gsheets.get_file_data(creds, args.populate_scores)
-    espn_data = espn.get_espn_data(args.week, None, True)
-    bet_data = util.add_scores_to_bet_data(bet_data, espn_data)
-    with open('output/{}-scores.json'.format(args.populate_scores), 'w') as f:
-        json.dump(bet_data, f)
+
+# espn = EspnApi()
+# espn_data_week15 = espn.get_week_data(15)
+# theoddsapi = TheOddsApi()
+# odds_data_week15 = theoddsapi.get_odds_data()
+# week15 = NflWeek(week=15, espn_data=espn_data_week15,
+#                  odds_data=odds_data_week15)
+
+# with open("output/espn_data_week_15.json", "w") as f:
+#     json.dump(espn_data_week15, f)
+# with open("output/odds_data_week_15.json", "w") as f:
+#     json.dump(odds_data_week15, f)
+
+# print(week15)
+
+# # gsheets = GoogleSheetsApi()
+# # creds = gsheets.get_google_api_creds()
+# # bet_data = gsheets.get_file_data(
+# #     creds, "odds-week14-bets", True)["sheets"][0]["rows"]
