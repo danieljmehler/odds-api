@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import logging
 import requests
+from src.odds.BetResults import BetResults
 from src.odds.api.TheOddsApi import TheOddsApi
 from src.odds.api.EspnApi import EspnApi
 from src.odds.nfl.NflGame import HomeAway, NflGame
@@ -23,9 +24,11 @@ class NflWeek:
         self.start_date = self.__get_datetime(this_week_entry["startDate"])
         self.end_date = self.__get_datetime(this_week_entry["endDate"])
         self.games = self.__initialize_games(espn_data["events"], odds_data)
+        self.bet_results = None
 
     def __str__(self):
-        return "\n".join(map(str, sorted(self.games, key=lambda x: x.date)))
+        game_list_str = "\n-\n".join(map(str, sorted(self.games, key=lambda x: x.date)))
+        return "{}\n-\nResults: {}".format(game_list_str, self.bet_results)
 
     def __get_datetime(self, event_date) -> datetime:
         """Convert date string from ESPN API data to a datetime
@@ -79,8 +82,16 @@ class NflWeek:
             game.set_bets(game_bet_data)
 
     def set_bet_results(self, events):
+        def event_is_game(game, event):
+            logging.debug("Comparing game \"{} at {}\" with event \"{}\"".format(game.teams.away, game.teams.home, event["name"]))
+            return event["name"][:event["name"].index(' at ')] == game.teams.away and event["name"][event["name"].index(' at ') + 4:] == game.teams.home
+        
+        self.bet_results = BetResults()
         for game in self.games:
-            game_event_data = next(iter([event for event in events if event["name"][:event["name"].index(
-                ' at ')] == game.teams.away and event["name"][event["name"].index(' at ') + 4:] == game.teams.home]), None)
+            print("Setting bet_results for game: {} at {}".format(game.teams.away, game.teams.home))
+            game_event_data = next(iter([event for event in events if event_is_game(game, event)]), None)
             game.set_bet_results(game_event_data)
+            self.bet_results += game.bet_results
+        
+        # self.bet_results = sum(game.bet_results for game in self.games)
             

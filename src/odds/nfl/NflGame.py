@@ -19,9 +19,10 @@ class NflGame:
         self.teams = teams
         self.score = None
         self.odds = None
+        self.bet_results = None
 
     def __str__(self):
-        game_info = "Week {} ({}) | {}{} at {}{}".format(
+        game_info = "Week {} ({})\n{}{} at {}{}".format(
             self.week,
             self.date.strftime("%Y-%m-%d %I:%M %p"),
             self.teams.away,
@@ -29,7 +30,7 @@ class NflGame:
             self.teams.home,
             ' {}'.format(self.score.home) if self.score else ''
         )
-        return "{}\n{}".format(game_info, self.odds)
+        return "{}\n{}\nResults: {}".format(game_info, self.odds, self.bet_results)
 
     def set_score(self, competition):
         if int(competition["status"]["type"]["id"]) == 3:
@@ -97,13 +98,39 @@ class NflGame:
 
         self.odds = NflGameOdds(h2h, spread, total)
 
+    def __set_odds(self, bet_data):
+        h2h = H2HOdds(
+            HomeAway(
+                bet_data["away_team_h2h_price"],
+                bet_data["home_team_h2h_price"]
+            )
+        )
+        spread = SpreadOdds(
+            HomeAway(
+                bet_data["away_team_spread"],
+                bet_data["home_team_spread"]
+            ),
+            HomeAway(
+                bet_data["away_team_spread_price"],
+                bet_data["home_team_spread_price"]
+            )
+        )
+        total = TotalOdds(
+            bet_data["over_under"],
+            HomeAway(
+                bet_data["under_price"],
+                bet_data["over_price"]
+            )
+        )
+        self.odds = NflGameOdds(h2h, spread, total)
+
     def set_bets(self, bet_data):
         if not bet_data:
             logging.debug("Cannot set bets. No bet data.")
             return
         if not self.odds:
-            logging.debug("Cannot set bets. No odds for game.")
-            return
+            logging.debug("Setting odds data from bet data.")
+            self.__set_odds(bet_data)
         if self.odds.h2h:
             logging.debug("Setting H2H bets.")
             self.odds.h2h.bet = HomeAway(
@@ -230,17 +257,8 @@ class NflGameOdds:
         self.total = total
 
     def __str__(self):
-        return "H2H: {}\nATS: {}\nO/U: {}\nResults: {}".format(
+        return "H2H: {}\nATS: {}\nO/U: {}".format(
             self.h2h,
             self.spread,
-            self.total,
-            "{}-{}-{} ${:,.2f}".format(
-                self.h2h.bet_results.wins + self.spread.bet_results.wins +
-                self.total.bet_results.wins,
-                self.h2h.bet_results.losses + self.spread.bet_results.losses +
-                self.total.bet_results.losses,
-                self.h2h.bet_results.pushes + self.spread.bet_results.pushes +
-                self.total.bet_results.pushes,
-                self.h2h.bet_results.net + self.spread.bet_results.net + self.total.bet_results.net
-            )
+            self.total
         )

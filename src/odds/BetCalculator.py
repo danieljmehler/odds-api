@@ -16,12 +16,21 @@ class BetCalculator:
             Results of the bets for the given NflGame
         """
         if nflgame.score is None:
-            return None
+            return
+        if nflgame.odds is None:
+            return
 
-        bet_results = BetResults()
-        nflgame.odds.h2h.bet_results = self.__calculate_h2h(nflgame)
-        nflgame.odds.spread.bet_results = self.__calculate_spread(nflgame)
-        nflgame.odds.total.bet_results = self.__calculate_total(nflgame)
+        nflgame.bet_results = BetResults()
+        if nflgame.odds.h2h is not None:
+            nflgame.odds.h2h.bet_results = self.__calculate_h2h(nflgame)
+            nflgame.bet_results += nflgame.odds.h2h.bet_results
+        if nflgame.odds.spread is not None:
+            nflgame.odds.spread.bet_results = self.__calculate_spread(nflgame)
+            nflgame.bet_results += nflgame.odds.spread.bet_results
+        if nflgame.odds.total is not None:
+            nflgame.odds.total.bet_results = self.__calculate_total(nflgame)
+            nflgame.bet_results += nflgame.odds.total.bet_results
+
 
     def __calculate_h2h(self, nflgame):
         """Calculate results of H2H bets made.
@@ -40,35 +49,37 @@ class BetCalculator:
             return BetResults(0, 0, 0, 0)
 
         # Push
-        if nflgame.score.away == nflgame.score.home:
+        if (nflgame.odds.h2h.bet.away > 0 or nflgame.odds.h2h.bet.home > 0) and nflgame.score.away == nflgame.score.home:
             return BetResults(0, 0, 1, 0)
 
         wins = 0
         losses = 0
         net = 0
         # Bet on away team to win h2h
-        won_away_bet = nflgame.score.away > nflgame.score.home
-        if won_away_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_away_bet,
-            nflgame.odds.h2h.price.away,
-            nflgame.odds.h2h.bet.away
-        )
+        if nflgame.odds.h2h.bet.away > 0:
+            won_away_bet = nflgame.score.away > nflgame.score.home
+            if won_away_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_away_bet,
+                nflgame.odds.h2h.price.away,
+                nflgame.odds.h2h.bet.away
+            )
 
         # Bet on home team to win h2h
-        won_home_bet = nflgame.score.home > nflgame.score.away
-        if won_home_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_home_bet,
-            nflgame.odds.h2h.price.home,
-            nflgame.odds.h2h.bet.home
-        )
+        if nflgame.odds.h2h.bet.home > 0:
+            won_home_bet = nflgame.odds.h2h.bet.home and nflgame.score.home > nflgame.score.away
+            if won_home_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_home_bet,
+                nflgame.odds.h2h.price.home,
+                nflgame.odds.h2h.bet.home
+            )
         return BetResults(
             wins,
             losses,
@@ -82,8 +93,7 @@ class BetCalculator:
             return BetResults(0, 0, 0, 0)
 
         # Push
-        if nflgame.score.away + nflgame.odds.spread.points.away == nflgame.score.home:
-            self.spread.pushes += 1
+        if (nflgame.odds.spread.bet.away > 0 or nflgame.odds.spread.bet.home > 0) and nflgame.score.away + nflgame.odds.spread.points.away == nflgame.score.home:
             return BetResults(0, 0, 1, 0)
 
         wins = 0
@@ -91,30 +101,32 @@ class BetCalculator:
         net = 0
 
         # Bet on away team to win ats
-        won_away_bet = nflgame.score.away + \
-            nflgame.odds.spread.points.away > nflgame.score.home
-        if won_away_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_away_bet,
-            nflgame.odds.spread.price.away,
-            nflgame.odds.spread.bet.away
-        )
+        if nflgame.odds.spread.bet.away > 0:
+            won_away_bet = nflgame.score.away + \
+                nflgame.odds.spread.points.away > nflgame.score.home
+            if won_away_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_away_bet,
+                nflgame.odds.spread.price.away,
+                nflgame.odds.spread.bet.away
+            )
 
         # Bet on home team to win ats
-        won_home_bet = nflgame.score.home + \
-            nflgame.odds.spread.points.home > nflgame.score.away
-        if won_home_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_home_bet,
-            nflgame.odds.spread.price.home,
-            nflgame.odds.spread.bet.home
-        )
+        if nflgame.odds.spread.bet.home > 0:
+            won_home_bet = nflgame.score.home + \
+                nflgame.odds.spread.points.home > nflgame.score.away
+            if won_home_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_home_bet,
+                nflgame.odds.spread.price.home,
+                nflgame.odds.spread.bet.home
+            )
         return BetResults(
             wins,
             losses,
@@ -128,7 +140,7 @@ class BetCalculator:
             return BetResults(0, 0, 0, 0)
 
         # Push
-        if nflgame.score.away + nflgame.score.home == nflgame.odds.total.points:
+        if (nflgame.odds.total.bet.away > 0 or nflgame.odds.total.bet.home > 0) and nflgame.score.away + nflgame.score.home == nflgame.odds.total.points:
             return BetResults(0, 0, 1, 0)
 
         wins = 0
@@ -136,29 +148,31 @@ class BetCalculator:
         net = 0
 
         # Bet on under
-        won_under_bet = nflgame.score.away + \
-            nflgame.score.home < nflgame.odds.total.points
-        if won_under_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_under_bet,
-            nflgame.odds.total.price.away,
-            nflgame.odds.total.bet.away
-        )
+        if nflgame.odds.total.bet.away > 0:
+            won_under_bet = nflgame.score.away + \
+                nflgame.score.home < nflgame.odds.total.points
+            if won_under_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_under_bet,
+                nflgame.odds.total.price.away,
+                nflgame.odds.total.bet.away
+            )
 
         # Bet on over
-        won_over_bet = nflgame.score.home + nflgame.score.away > nflgame.odds.total.points
-        if won_over_bet:
-            wins += 1
-        else:
-            losses += 1
-        net += self.__calculate_bet_winnings(
-            won_over_bet,
-            nflgame.odds.total.price.home,
-            nflgame.odds.total.bet.home
-        )
+        if nflgame.odds.total.bet.home > 0:
+            won_over_bet = nflgame.score.home + nflgame.score.away > nflgame.odds.total.points
+            if won_over_bet:
+                wins += 1
+            else:
+                losses += 1
+            net += self.__calculate_bet_winnings(
+                won_over_bet,
+                nflgame.odds.total.price.home,
+                nflgame.odds.total.bet.home
+            )
         return BetResults(
             wins,
             losses,

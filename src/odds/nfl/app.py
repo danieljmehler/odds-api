@@ -106,37 +106,17 @@ if args.get_bets_data:
         if espn_data is None:
             espn_data = get_scoreboard_data(
                 week, "output/week{}_scoreboard.json".format(week))
-        if odds_data is None:
-            odds_data = get_odds_data(
-                week, "output/week{}_odds.json".format(week))
+
         nflweek = NflWeek(week, espn_data=espn_data, odds_data=odds_data)
     bet_data = gsheetsapi.get_file_data(gsheetcred, args.get_bets_data, True)[
         "sheets"][0]["rows"]
-    print("bet_data={}".format(bet_data))
     nflweek.set_bets(bet_data)
+    nflweek.set_bet_results(espn_data["events"])
     print(nflweek)
 
 if args.calculate_bet_results:
     if not args.get_bets_data:
         sys.exit('When specifying "--calculate-bet-results" you must also specify "--get-bets-data"')
-    
-
-
-# espn = EspnApi()
-# espn_data_week15 = espn.get_week_data(15)
-# theoddsapi = TheOddsApi()
-# odds_data_week15 = theoddsapi.get_odds_data()
-# week15 = NflWeek(week=15, espn_data=espn_data_week15,
-#                  odds_data=odds_data_week15)
-
-# with open("output/espn_data_week_15.json", "w") as f:
-#     json.dump(espn_data_week15, f)
-# with open("output/odds_data_week_15.json", "w") as f:
-#     json.dump(odds_data_week15, f)
-
-# print(week15)
-
-# # gsheets = GoogleSheetsApi()
-# # creds = gsheets.get_google_api_creds()
-# # bet_data = gsheets.get_file_data(
-# #     creds, "odds-week14-bets", True)["sheets"][0]["rows"]
+    # Get latest scoreboard data
+    espn_data = get_scoreboard_data(
+        week, "output/week{}_scoreboard.json".format(week))
